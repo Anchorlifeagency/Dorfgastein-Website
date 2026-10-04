@@ -1,716 +1,338 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Appartement 221 - Haus Gamskar | Gäste-Info & Digital Guest Guide</title>
-  <!-- Google Fonts & Font Awesome for icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4;
+    margin: 10mm 12mm 10mm 12mm;
+    background-color: #fcfbfa;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
 
-  <style>
-    :root {
-      --primary: #2e4a38;
-      --primary-dark: #1e3325;
-      --primary-light: #eaf2ed;
-      --accent: #d4a373;
-      --text: #2c3e50;
-      --text-muted: #64748b;
-      --bg: #f8faf9;
-      --card-bg: #ffffff;
-      --border: #e2e8f0;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --radius: 12px;
-    }
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    font-size: 9.2pt;
+    line-height: 1.36;
+  }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  /* Header / Banner */
+  .header-banner {
+    background-color: #2e4a38;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
 
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding-bottom: 40px;
-    }
+  .header-banner h1 {
+    margin: 0 0 2px 0;
+    font-size: 18pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
 
-    /* Top Language Bar */
-    .top-bar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    }
+  .header-banner p {
+    margin: 0;
+    font-size: 9.5pt;
+    color: #e0ece4;
+  }
 
-    .brand-title {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+  .wifi-inline {
+    background-color: #203527;
+    color: #ffffff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    text-align: right;
+    display: inline-block;
+  }
 
-    .lang-switch-btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      font-size: 0.9rem;
-    }
+  /* Grid layout using table for WeasyPrint compatibility */
+  .grid-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
 
-    .lang-switch-btn:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-1px);
-    }
+  .grid-cell {
+    vertical-align: top;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 9px 11px;
+  }
 
-    /* Container */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
+  .width-50 {
+    width: 50%;
+  }
 
-    /* Hero Image */
-    .hero-container {
-      position: relative;
-      margin-top: 16px;
-      margin-bottom: 24px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
+  .width-100 {
+    width: 100%;
+  }
 
-    .hero-img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      display: block;
-      background-color: #cbd5e1;
-    }
+  h2 {
+    color: #2e4a38;
+    font-size: 10.5pt;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #8fa89b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-    .hero-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.75));
-      color: white;
-      padding: 24px;
-    }
+  h3 {
+    color: #1a252f;
+    font-size: 8.8pt;
+    margin-top: 6px;
+    margin-bottom: 2px;
+  }
 
-    .hero-overlay h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
+  ul {
+    margin: 0;
+    padding-left: 15px;
+  }
 
-    .hero-overlay p {
-      font-size: 1.05rem;
-      opacity: 0.9;
-    }
+  li {
+    margin-bottom: 3px;
+  }
 
-    /* Wi-Fi & Quick Info Bar */
-    .wifi-card {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border-radius: var(--radius);
-      padding: 18px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow);
-    }
+  .badge {
+    background-color: #eaf2ed;
+    color: #2e4a38;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 8.5pt;
+    display: inline-block;
+  }
 
-    .wifi-info {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+  .highlight-box {
+    background-color: #f4f7f5;
+    border-left: 4px solid #2e4a38;
+    padding: 7px 9px;
+    margin: 7px 0;
+    border-radius: 0 5px 5px 0;
+  }
 
-    .wifi-icon {
-      font-size: 1.8rem;
-      background: rgba(255,255,255,0.15);
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  .table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3px;
+    font-size: 8.1pt;
+  }
 
-    .wifi-details .label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #a3c2b0;
-    }
+  .table-custom th, .table-custom td {
+    padding: 3px 5px;
+    border-bottom: 1px solid #edf2f7;
+    text-align: left;
+  }
 
-    .wifi-details .val {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
+  .table-custom th {
+    background-color: #f7fafc;
+    color: #4a5568;
+    font-weight: 600;
+  }
 
-    /* Card Layout Grids */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-bottom: 24px;
-    }
+  .table-custom tr:last-child td {
+    border-bottom: none;
+  }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow);
-    }
+  .price-col {
+    text-align: right !important;
+    white-space: nowrap;
+  }
 
-    .card h2 {
-      color: var(--primary);
-      font-size: 1.2rem;
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--primary-light);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+  .page-break-before {
+    page-break-before: always;
+  }
 
-    .card ul {
-      list-style: none;
-    }
-
-    .card li {
-      position: relative;
-      padding-left: 24px;
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-    }
-
-    .card li:last-child {
-      margin-bottom: 0;
-    }
-
-    .card li::before {
-      content: "\f00c";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-      font-size: 0.85rem;
-      top: 2px;
-    }
-
-    /* Highlight Banner for Therme */
-    .highlight-banner {
-      background-color: var(--primary-light);
-      border-left: 5px solid var(--primary);
-      border-radius: 8px;
-      padding: 18px;
-      margin-bottom: 24px;
-    }
-
-    .highlight-badge {
-      background-color: var(--primary);
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 12px;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-bottom: 8px;
-    }
-
-    .highlight-banner h3 {
-      color: var(--primary);
-      font-size: 1.15rem;
-      margin-bottom: 6px;
-    }
-
-    .highlight-banner p {
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-
-    /* Photo Gallery Pairs */
-    .photo-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .photo-card {
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background-color: #e2e8f0;
-      height: 220px;
-      position: relative;
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .photo-card:hover img {
-      transform: scale(1.03);
-    }
-
-    /* Dining Tables */
-    .menu-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 0.9rem;
-    }
-
-    .menu-table th, .menu-table td {
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-    }
-
-    .menu-table th {
-      background-color: var(--bg);
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .price {
-      text-align: right !important;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    /* Links & Buttons */
-    .btn-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: var(--primary);
-      color: white !important;
-      padding: 10px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-      margin-top: 8px;
-    }
-
-    .btn-link:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    /* Arrival Section */
-    .arrival-section {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .arrival-section h2 {
-      color: var(--primary);
-      font-size: 1.25rem;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--primary-light);
-    }
-
-    .travel-option {
-      margin-bottom: 16px;
-    }
-
-    .travel-option h3 {
-      font-size: 1rem;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-
-    .travel-option p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      padding-left: 26px;
-    }
-
-    /* Host Sign-off Footer */
-    .host-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-    }
-
-    .host-img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--primary-light);
-      flex-shrink: 0;
-      background-color: #cbd5e1;
-    }
-
-    .host-text h3 {
-      font-size: 1.15rem;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .host-text p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    @media (max-width: 640px) {
-      .hero-img {
-        height: 240px;
-      }
-      .photo-grid-2 {
-        grid-template-columns: 1fr;
-      }
-      .host-card {
-        flex-direction: column;
-        text-align: center;
-      }
-      .wifi-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+  .footer-note {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 7.8pt;
+    color: #718096;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 5px;
+  }
+</style>
 </head>
 <body>
 
-  <!-- Sticky Header with Language Toggle -->
-  <header class="top-bar">
-    <div class="brand-title">
-      <i class="fa-solid fa-house-chimney"></i>
-      <span>Appartement 221 - Haus Gamskar</span>
-    </div>
-    <button class="lang-switch-btn" onclick="toggleLanguage()">
-      <i class="fa-solid fa-globe"></i>
-      <span id="lang-btn-text">English</span>
-    </button>
-  </header>
-
-  <div class="container">
-
-    <!-- Top Breitformat Hero Foto -->
-    <div class="hero-container">
-      <img src="hero_apartment.jpg" alt="Appartement 221 Haus Gamskar" class="hero-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80';">
-      <div class="hero-overlay">
-        <h1 data-de="Willkommen im Appartement 221" data-en="Welcome to Apartment 221">Willkommen im Appartement 221</h1>
-        <p data-de="Haus Gamskar • Unterberg 110 (97), A-5632 Dorfgastein" data-en="Haus Gamskar • Unterberg 110 (97), A-5632 Dorfgastein">Haus Gamskar • Unterberg 110 (97), A-5632 Dorfgastein</p>
-      </div>
-    </div>
-
-    <!-- WLAN & Quick Contact Card -->
-    <div class="wifi-card">
-      <div class="wifi-info">
-        <div class="wifi-icon"><i class="fa-solid fa-wifi"></i></div>
-        <div class="wifi-details">
-          <div class="label" data-de="WLAN Passwort" data-en="Wi-Fi Password">WLAN Passwort</div>
-          <div class="val">Dorfgastein#5632</div>
-        </div>
-      </div>
-      <div>
-        <span style="font-size: 0.85rem; color: #a3c2b0; display: block;" data-de="Fragen & Kontakt vor Ort" data-en="On-site Contact">Fragen & Kontakt vor Ort</span>
-        <strong style="font-size: 1.1rem;"><i class="fa-solid fa-phone"></i> +43 (0)6433 7077</strong>
-      </div>
-    </div>
-
-    <!-- Anreise, Check-In, Check-Out Grid -->
-    <div class="grid-2">
-      <!-- Check-In Card -->
-      <div class="card">
-        <h2><i class="fa-solid fa-key"></i> <span data-de="Anreise & Check-in" data-en="Arrival & Check-in">Anreise & Check-in</span></h2>
-        <ul>
-          <li><b><span data-de="Adresse:" data-en="Address:">Adresse:</span></b> Unterberg 110 (97), A-5632 Dorfgastein</li>
-          <li><b><span data-de="Check-in Zeit:" data-en="Check-in Time:">Check-in Zeit:</span></b> <span data-de="Regulär zwischen 14:00 und 17:00 Uhr." data-en="Regularly between 2:00 PM and 5:00 PM.">Regulär zwischen 14:00 und 17:00 Uhr.</span></li>
-          <li>
-            <b><span data-de="Online Self-Check-in:" data-en="Online Self-Check-in:">Online Self-Check-in:</span></b> 
-            <span data-de="2–3 Tage vor Ihrer Anreise senden wir Ihnen einen Link zum Self-Check-in, um vor Ort Zeit zu sparen." data-en="2–3 days prior to arrival, we will send you a self-check-in link to save time upon arrival.">2–3 Tage vor Ihrer Anreise senden wir Ihnen einen Link zum Self-Check-in, um vor Ort Zeit zu sparen.</span>
-          </li>
-          <li>
-            <b><span data-de="Schlüssel & Rezeption:" data-en="Keys & Reception:">Schlüssel & Rezeption:</span></b> 
-            <span data-de="Erfolgt über das Partner-Hotel „die Unterbergerin“ direkt nebenan." data-en="Handled via partner hotel 'die Unterbergerin' right next door.">Erfolgt über das Partner-Hotel „die Unterbergerin“ direkt nebenan.</span>
-          </li>
-          <li>
-            <b><span data-de="Spätere Anreise:" data-en="Late Arrival:">Spätere Anreise:</span></b> 
-            <span data-de="Bei Ankunft nach 17:00 Uhr bitte kurz Bescheid geben. Wir hinterlegen Ihren Schlüssel im Schlüsselsafe und senden Ihnen am Anreisetag den PIN-Code zu. Bei Verzögerungen erreichen Sie uns unterwegs unter +43 (0)6433 7077." data-en="If arriving after 5:00 PM, please inform us or the hotel. We will leave your key in the key safe and send you the PIN code on arrival day. Call +43 (0)6433 7077 if delayed.">Bei Ankunft nach 17:00 Uhr bitte kurz Bescheid geben. Wir hinterlegen Ihren Schlüssel im Schlüsselsafe und senden Ihnen am Anreisetag den PIN-Code zu. Bei Verzögerungen erreichen Sie uns unterwegs unter +43 (0)6433 7077.</span>
-          </li>
-          <li><b><span data-de="Appartement 221:" data-en="Apartment 221:">Appartement 221:</span></b> <span data-de="Haus Gamskar (42 m², 1 Schlafzimmer, 1 Wohnzimmer mit Ausziehsofa)." data-en="Haus Gamskar (42 m², 1 bedroom, 1 living room with sofa bed).">Haus Gamskar (42 m², 1 Schlafzimmer, 1 Wohnzimmer mit Ausziehsofa).</span></li>
-          <li><b><span data-de="Parkplatz:" data-en="Parking:">Parkplatz:</span></b> <span data-de="Stellplatz Nr. 221 ist kostenfrei." data-en="Parking space No. 221 is free of charge.">Stellplatz Nr. 221 ist kostenfrei.</span></li>
-        </ul>
-      </div>
-
-      <!-- Check-Out & Abrechnung Card -->
-      <div class="card">
-        <h2><i class="fa-solid fa-receipt"></i> <span data-de="Abreise & Abrechnung" data-en="Departure & Payment">Abreise & Abrechnung</span></h2>
-        <ul>
-          <li><b><span data-de="Check-out Zeit:" data-en="Check-out Time:">Check-out Zeit:</span></b> <span data-de="Bis spätestens 10:00 Uhr am Abreisetag. Beide Schlüssel bitte wieder bei „die Unterbergerin“ abgeben." data-en="By 10:00 AM on departure day. Please return both keys to 'die Unterbergerin'.">Bis spätestens 10:00 Uhr am Abreisetag. Beide Schlüssel bitte wieder bei „die Unterbergerin“ abgeben.</span></li>
-          <li>
-            <b><span data-de="Miete, Endreinigung & Kurtaxe:" data-en="Rent, Final Cleaning & Tourist Tax:">Miete, Endreinigung & Kurtaxe:</span></b> 
-            <span data-de="Ihre Zahlungen (Übernachtung, Endreinigung sowie Ortstaxe/Kurtaxe) sind bereits vollständig über Airbnb abgewickelt und inkludiert." data-en="Your payments (stay, final cleaning, and local tourist tax) are fully included and processed via Airbnb.">Ihre Zahlungen (Übernachtung, Endreinigung sowie Ortstaxe/Kurtaxe) sind bereits vollständig über Airbnb abgewickelt und inkludiert.</span>
-          </li>
-          <li>
-            <b><span data-de="Optionale Leistungen vor Ort:" data-en="Optional Services:">Optionale Leistungen vor Ort:</span></b> 
-            <span data-de="Optional gebuchte Verpflegung (Frühstück, Brötchen, Gerichte) bezahlen Sie bequem bei Abreise direkt bei „die Unterbergerin“ (Bar oder EC-Karte)." data-en="Optional meals (breakfast, bread rolls, dishes) are paid upon departure directly at 'die Unterbergerin' (Cash or Card).">Optional gebuchte Verpflegung (Frühstück, Brötchen, Gerichte) bezahlen Sie bequem bei Abreise direkt bei „die Unterbergerin“ (Bar oder EC-Karte).</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Thermen Highlight Banner -->
-    <div class="highlight-banner">
-      <span class="highlight-badge"><i class="fa-solid fa-hot-tub-person"></i> <span data-de="Inklusiv-Highlight" data-en="Included Highlight">Inklusiv-Highlight</span></span>
-      <h3 data-de="Täglich freier Eintritt in die Alpentherme Bad Hofgastein inkl. Sauna World!" data-en="Daily Free Entry to Alpentherme Bad Hofgastein incl. Sauna World!">Täglich freier Eintritt in die Alpentherme Bad Hofgastein inkl. Sauna World!</h3>
-      <p data-de="Ab einem Aufenthalt von 2 Nächten sind die täglichen Eintritte in die Alpentherme Bad Hofgastein inklusive Sauna World für Sie kostenlos – auch am An- und Abreisetag! Bitte holen Sie Ihre Gutscheine/Eintrittskarten an der Rezeption von „die Unterbergerin“ ab." data-en="For stays of 2 nights or more, daily admission to Alpentherme Bad Hofgastein including Sauna World is free of charge – even on arrival and departure days! Please pick up your tickets at the reception of 'die Unterbergerin'.">
-        Ab einem Aufenthalt von 2 Nächten sind die täglichen Eintritte in die Alpentherme Bad Hofgastein inklusive Sauna World für Sie kostenlos – auch am An- und Abreisetag! Bitte holen Sie Ihre Gutscheine/Eintrittskarten an der Rezeption von „die Unterbergerin“ ab.
-      </p>
-    </div>
-
-    <!-- 2 Fotos nebeneinander von der Wohnung -->
-    <div class="photo-grid-2">
-      <div class="photo-card">
-        <img src="apartment_interior_1.jpg" alt="Wohnzimmer Appartement 221" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80';">
-      </div>
-      <div class="photo-card">
-        <img src="apartment_interior_2.jpg" alt="Schlafzimmer Appartement 221" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80';">
-      </div>
-    </div>
-
-    <!-- Verpflegung & Kulinarik Card -->
-    <div class="card" style="margin-bottom: 24px;">
-      <h2><i class="fa-solid fa-utensils"></i> <span data-de="Verpflegung & Kulinarik vor Ort" data-en="Dining & On-Site Culinary Offers">Verpflegung & Kulinarik vor Ort</span></h2>
-      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;" data-de="Optional buchbare Angebote im Partner-Hotel & Bauernhof „die Unterbergerin“ (vor Ort zu zahlen):" data-en="Optional culinary offers at partner hotel & farm 'die Unterbergerin' (payable on site):">
-        Optional buchbare Angebote im Partner-Hotel & Bauernhof „die Unterbergerin“ (vor Ort zu zahlen):
-      </p>
-
-      <div class="photo-card" style="height: 200px; margin-bottom: 16px;">
-        <img src="breakfast.jpg" alt="Frühstücksbuffet & Körbchen" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=800&q=80';">
-      </div>
-
-      <div class="grid-2" style="margin-bottom: 0;">
-        <div>
-          <h3><i class="fa-solid fa-mug-hot"></i> <span data-de="Frühstücks-Optionen" data-en="Breakfast Options">Frühstücks-Optionen</span></h3>
-          <table class="menu-table">
-            <thead>
-              <tr>
-                <th data-de="Kategorie" data-en="Category">Kategorie</th>
-                <th class="price" data-de="Vorbest." data-en="Pre-booked">Vorbest.</th>
-                <th class="price" data-de="Spontan" data-en="Walk-in">Spontan</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td data-de="Erwachsene (ab 15 J.)" data-en="Adults (15+ yrs)">Erwachsene (ab 15 J.)</td><td class="price">€ 19,00</td><td class="price">€ 21,00</td></tr>
-              <tr><td data-de="Kinder (12–14 J.)" data-en="Children (12–14 yrs)">Kinder (12–14 J.)</td><td class="price">€ 15,00</td><td class="price">€ 16,50</td></tr>
-              <tr><td data-de="Kinder (6–11 J.)" data-en="Children (6–11 yrs)">Kinder (6–11 J.)</td><td class="price">€ 12,90</td><td class="price">€ 14,00</td></tr>
-              <tr><td data-de="Kinder (0–5 J.)" data-en="Children (0–5 yrs)">Kinder (0–5 J.)</td><td class="price" colspan="2" style="text-align: center !important;" data-de="GRATIS" data-en="FREE">GRATIS</td></tr>
-            </tbody>
-          </table>
-          <p style="font-size: 0.85rem; margin-top: 10px;">
-            <b data-de="Frühstückskörbchen für Zwei:" data-en="Breakfast Basket for Two:">Frühstückskörbchen für Zwei:</b> € 26,00 <span data-de="(Bestellung am Vortag bis 10:30 Uhr)" data-en="(Order day before by 10:30 AM)">(Bestellung am Vortag bis 10:30 Uhr)</span><br>
-            <b data-de="Brötchenservice:" data-en="Bread Delivery:">Brötchenservice:</b> <span data-de="Semmel (€ 0,70), Kornspitz (€ 1,60), Croissant (€ 1,95), Frische Milch 0,5l (€ 1,60)." data-en="Bread roll (€ 0.70), Kornspitz (€ 1.60), Croissant (€ 1.95), Fresh Milk 0.5l (€ 1.60).">Semmel (€ 0,70), Kornspitz (€ 1,60), Croissant (€ 1,95), Frische Milch 0,5l (€ 1,60).</span>
-          </p>
-        </div>
-
-        <div>
-          <h3><i class="fa-solid fa-bowl-food"></i> <span data-de="Bauernhofküche & Hofladen" data-en="Farmhouse Kitchen & Shop">Bauernhofküche & Hofladen</span></h3>
-          <p style="font-size: 0.85rem; margin-bottom: 6px;" data-de="Fertig gekochte Speisen für Ihr Appartement (Vorbestellung bis 17:00 Uhr):" data-en="Ready-cooked dishes for your apartment (Order by 5:00 PM):">
-            Fertig gekochte Speisen für Ihr Appartement (Vorbestellung bis 17:00 Uhr):
-          </p>
-          <table class="menu-table">
-            <tbody>
-              <tr><td data-de="Sugo Bolognese (400g)" data-en="Bolognese Sauce (400g)">Sugo Bolognese (400g)</td><td class="price">€ 9,60</td></tr>
-              <tr><td data-de="Kürbis-Cremesuppe (600g)" data-en="Pumpkin Soup (600g)">Kürbis-Cremesuppe (600g)</td><td class="price">€ 8,50</td></tr>
-              <tr><td data-de="Gulasch (600g)" data-en="Beef Goulash (600g)">Gulasch (600g)</td><td class="price">€ 10,90</td></tr>
-              <tr><td data-de="Rinder-Schmorbraten (500g)" data-en="Braised Beef Roast (500g)">Rinder-Schmorbraten (500g)</td><td class="price">€ 18,90</td></tr>
-            </tbody>
-          </table>
-          <p style="font-size: 0.85rem; margin-top: 8px;">
-            <b data-de="24/7 Waren-Automat:" data-en="24/7 Vending Machine:">24/7 Waren-Automat:</b> <span data-de="Vor dem Haupthaus (Eier, Speck, Käse, Kaffeekapseln, Getränke, Waschmittel etc.)." data-en="In front of main house (eggs, bacon, cheese, coffee capsules, drinks, laundry detergent, etc.).">Vor dem Haupthaus (Eier, Speck, Käse, Kaffeekapseln, Getränke, Waschmittel etc.).</span>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Hausregeln Card (JETZT VOLLSTÄNDIG ZWEISPRACHIG) -->
-    <div class="card" style="margin-bottom: 24px;">
-      <h2><i class="fa-solid fa-circle-info"></i> <span data-de="Wichtige Haus- & Appartement-Infos" data-en="Important House Information">Wichtige Haus- & Appartement-Infos</span></h2>
-      <table class="menu-table">
-        <tbody>
-          <tr>
-            <td width="30%"><b data-de="Mülltrennung:" data-en="Waste Separation:">Mülltrennung:</b></td>
-            <td data-de="Container straßenseitig. Bitte trennen nach Altpapier, Plastik/Verpackung, Biomüll, Altglas und Restmüll." data-en="Containers street-side. Please separate paper, plastic/packaging, organic waste, glass, and residual waste.">Container straßenseitig. Bitte trennen nach Altpapier, Plastik/Verpackung, Biomüll, Altglas und Restmüll.</td>
-          </tr>
-          <tr>
-            <td><b data-de="Skiraum & Sportgeräte:" data-en="Ski Room & Equipment:">Skiraum & Sportgeräte:</b></td>
-            <td data-de="Fahrrad- und Sportgeräteraum im Untergeschoss nutzen (Türe links). Bitte keine Sportgeräte in der Wohnung aufbewahren!" data-en="Please use the bicycle and sports equipment room in the basement (door on the left). No sports equipment allowed inside the apartment!">Fahrrad- und Sportgeräteraum im Untergeschoss nutzen (Türe links). Bitte keine Sportgeräte in der Wohnung aufbewahren!</td>
-          </tr>
-          <tr>
-            <td><b data-de="Wäscheständer:" data-en="Drying Rack:">Wäscheständer:</b></td>
-            <td data-de="In der Wohnung vorhanden. Bitte aus optischen Gründen keine Wäsche über dem Balkon aufhängen." data-en="Available in the apartment. For aesthetic reasons, please do not hang laundry over the balcony.">In der Wohnung vorhanden. Bitte aus optischen Gründen keine Wäsche über dem Balkon aufhängen.</td>
-          </tr>
-          <tr>
-            <td><b data-de="Endreinigung Hinweis:" data-en="Final Cleaning Notice:">Endreinigung Hinweis:</b></td>
-            <td data-de="Bitte Küche sauber hinterlassen, Geschirrspüler vor Abreise einräumen/einschalten und Müll entsorgen." data-en="Please leave the kitchen clean, load/run the dishwasher before departing, and dispose of your waste.">Bitte Küche sauber hinterlassen, Geschirrspüler vor Abreise einräumen/einschalten und Müll entsorgen.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Aktivitäten & Digitaler Gastfreund App Link -->
-    <div class="card" style="margin-bottom: 24px;">
-      <h2><i class="fa-solid fa-compass"></i> <span data-de="Aktivitäten & Digitaler Reiseführer" data-en="Activities & Digital Guide">Aktivitäten & Digitaler Reiseführer</span></h2>
-      <p data-de="Entdecken Sie Ausflugstipps, Wanderrouten, Skigebiete (Fulseck, Schlossalm, Stubnerkogel) und aktuelle Events im Gasteinertal direkt in unserer digitalen Gäste-App:" data-en="Discover excursion tips, hiking routes, ski areas, and current events in Gastein Valley via our digital guest guide:">
-        Entdecken Sie Ausflugstipps, Wanderrouten, Skigebiete (Fulseck, Schlossalm, Stubnerkogel) und aktuelle Events im Gasteinertal direkt in unserer digitalen Gäste-App:
-      </p>
-      <a href="https://welcome.gastfreund.net/168893" target="_blank" class="btn-link">
-        <i class="fa-solid fa-mobile-screen-button"></i>
-        <span data-de="Zur Gastfreund App öffnen" data-en="Open Gastfreund Guest App">Zur Gastfreund App öffnen</span>
-      </a>
-      <p style="margin-top: 12px; font-size: 0.9rem; font-style: italic; color: var(--primary-dark);">
-        <i class="fa-solid fa-lightbulb"></i> <span data-de="Tipp: Reservieren Sie beliebte Aktivitäten am besten vorab, so sichern Sie sich Ihre Wunschtermine!" data-en="Tip: We recommend booking popular activities in advance to secure your preferred dates!">Tipp: Reservieren Sie beliebte Aktivitäten am besten vorab, so sichern Sie sich Ihre Wunschtermine!</span>
-      </p>
-    </div>
-
-    <!-- Anfahrtsbeschreibung Section -->
-    <div class="arrival-section">
-      <h2><i class="fa-solid fa-map-location-dot"></i> <span data-de="Anfahrtsbeschreibung & Anreise" data-en="Directions & How to get here">Anfahrtsbeschreibung & Anreise</span></h2>
-      
-      <p style="margin-bottom: 16px; font-weight: 500;" data-de="Gute Anreise! Wir wünschen Ihnen eine angenehme und sichere Fahrt und freuen uns schon sehr darauf, Sie bald persönlich bei uns begrüßen zu dürfen!" data-en="Safe travels! We wish you a pleasant journey and look forward to welcoming you personally!">
-        Gute Anreise! Wir wünschen Ihnen eine angenehme und sichere Fahrt und freuen uns schon sehr darauf, Sie bald persönlich bei uns begrüßen zu dürfen!
-      </p>
-
-      <div class="travel-option">
-        <h3><i class="fa-solid fa-car"></i> <span data-de="Anreise mit dem PKW" data-en="By Car">Anreise mit dem PKW</span></h3>
-        <p data-de="Über A10 Tauernautobahn: Abfahrt Knoten „Pongau/Bischofshofen“, dann Richtung Gasteinertal. Unmittelbar vor Dorfgastein (nach der KFZ-Werkstätte liqui moly) dem Wegweiser nach Unterberg folgen." data-en="Via A10 Tauern Motorway: Exit 'Pongau/Bischofshofen', then head towards Gasteinertal. Right before Dorfgastein (after liqui moly garage), follow signs to Unterberg.">
-          Über A10 Tauernautobahn: Abfahrt Knoten „Pongau/Bischofshofen“, dann Richtung Gasteinertal. Unmittelbar vor Dorfgastein (nach der KFZ-Werkstätte liqui moly) dem Wegweiser nach Unterberg folgen.
-        </p>
-        <p style="margin-top: 4px;" data-de="Mautfrei von Deutschland: Ausfahrt Traunstein → Inzell → Steinpass → Unken → Lofer → Saalfelden → Zell am See → Abzweigung Gasteinertal → Dorfgastein." data-en="Toll-free from Germany: Exit Traunstein → Inzell → Steinpass → Unken → Lofer → Saalfelden → Zell am See → Turnoff Gasteinertal → Dorfgastein.">
-          Mautfrei von Deutschland: Ausfahrt Traunstein → Inzell → Steinpass → Unken → Lofer → Saalfelden → Zell am See → Abzweigung Gasteinertal → Dorfgastein.
-        </p>
-      </div>
-
-      <div class="travel-option">
-        <h3><i class="fa-solid fa-charging-station"></i> <span data-de="Nachhaltige Anreise mit E-Auto" data-en="E-Car Charging">Nachhaltige Anreise mit E-Auto</span></h3>
-        <p data-de="Direkt bei unseren Ferienhäusern steht eine E-Ladestation bereit (Stecker Typ 2, Ladeleistung 12,7 kW). Die Abrechnung erfolgt direkt über Ihre Ladekarte." data-en="An EV charging station is available directly at our holiday houses (Type 2 plug, 12.7 kW power). Billing is processed via your charging card.">
-          Direkt bei unseren Ferienhäusern steht eine E-Ladestation bereit (Stecker Typ 2, Ladeleistung 12,7 kW). Die Abrechnung erfolgt direkt über Ihre Ladekarte.
-        </p>
-      </div>
-
-      <div class="travel-option">
-        <h3><i class="fa-solid fa-train"></i> <span data-de="Anreise per Bahn" data-en="By Train">Anreise per Bahn</span></h3>
-        <p data-de="Viele Züge halten direkt in Dorfgastein. Für Direktbucher bieten wir nach Verfügbarkeit & Voranmeldung einen gratis Transfer vom Bahnhof Dorfgastein bis Unterberg (ohne Skiausrüstung/Fahrräder). Autoreisezüge halten in Villach, Innsbruck oder München." data-en="Trains stop directly in Dorfgastein. Autoreisezüge stop in Villach, Innsbruck or Munich. Car rental / taxis available at 'Gastein Autovermietung'.">
-          Viele Züge halten direkt in Dorfgastein. Für Direktbucher bieten wir nach Verfügbarkeit & Voranmeldung einen gratis Transfer vom Bahnhof Dorfgastein bis Unterberg (ohne Skiausrüstung/Fahrräder). Autoreisezüge halten in Villach, Innsbruck oder München.
-        </p>
-      </div>
-
-      <div class="travel-option">
-        <h3><i class="fa-solid fa-plane"></i> <span data-de="Anreise per Flugzeug" data-en="By Plane">Anreise per Flugzeug</span></h3>
-        <p data-de="Flughafen Salzburg (ca. 60 Min. entfernt), München oder Klagenfurt. Flughafentransfer buchbar unter „Flughafentransfer Gastein“ oder Mietwagen via Sixt." data-en="Airports: Salzburg (approx. 60 min away), Munich or Klagenfurt. Airport transfer available via 'Flughafentransfer Gastein' or Sixt car rental.">
-          Flughafen Salzburg (ca. 60 Min. entfernt), München oder Klagenfurt. Flughafentransfer buchbar unter „Flughafentransfer Gastein“ oder Mietwagen via Sixt.
-        </p>
-      </div>
-
-      <a href="https://www.google.com/maps/dir//''/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x477726a22cc2c4df:0x2f61ce8acdc454ad!3e0?g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF" target="_blank" class="btn-link">
-        <i class="fa-solid fa-location-arrow"></i>
-        <span data-de="Route auf Google Maps öffnen" data-en="Open Route on Google Maps">Route auf Google Maps öffnen</span>
-      </a>
-    </div>
-
-    <!-- Host Card mit Foto von Laura & Rene -->
-    <div class="host-card">
-      <img src="laura_and_rene.jpg" alt="Laura und Rene" class="host-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80';">
-      <div class="host-text">
-        <h3 data-de="Einen wunderschönen Aufenthalt wünschen Ihnen" data-en="We wish you a wonderful stay">Einen wunderschönen Aufenthalt wünschen Ihnen</h3>
-        <p style="font-size: 1.2rem; font-weight: 700; color: var(--primary);" data-de="Laura & Rene" data-en="Laura & Rene">Laura & Rene</p>
-        <p style="margin-top: 4px;" data-de="Ihre Gastgeber im Appartement 221 • Haus Gamskar" data-en="Your hosts at Apartment 221 • Haus Gamskar">Ihre Gastgeber im Appartement 221 • Haus Gamskar</p>
-      </div>
-    </div>
-
-    <div class="footer">
-      <p>© Appartement 221 - Haus Gamskar • Unterberg 110 (97), A-5632 Dorfgastein</p>
-    </div>
-
+  <!-- SEITE 1 -->
+  <div class="header-banner">
+    <table width="100%" style="border-collapse: collapse;">
+      <tr>
+        <td style="vertical-align: middle;">
+          <h1>Willkommen im Appartement 221</h1>
+          <p>Haus Gamskar • Unterberg 110 (97), A-5632 Dorfgastein</p>
+        </td>
+        <td style="vertical-align: middle; text-align: right;">
+          <div class="wifi-inline">
+            <div><b>WLAN:</b> Dorfgastein#5632</div>
+            <div style="font-size: 7.8pt; color: #a3c2b0; margin-top: 2px;">Kontakt vor Ort: Partnerhotel „die Unterbergerin“<br>Tel: +43 (0)6433 7077</div>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 
-  <!-- JavaScript for Language Toggle -->
-  <script>
-    let currentLang = 'de';
+  <table class="grid-table">
+    <tr>
+      <td class="grid-cell width-50">
+        <h2>Anreise & Check-in</h2>
+        <ul>
+          <li><b>Adresse:</b> Unterberg 110 (97), A-5632 Dorfgastein</li>
+          <li><b>Check-in Zeit:</b> Regulär erwarten wir Ihre Ankunft zwischen <b>14:00 und 17:00 Uhr</b>.</li>
+          <li><b>Rezeption & Schlüssel:</b> Die Abwicklung und Schlüsselübergabe erfolgen über die Rezeption im Haupthaus von <b>„die Unterbergerin“</b> direkt nebenan.</li>
+          <li><b>Spätere Anreise:</b> Sollten Sie nach 17:00 Uhr anreisen oder sich verspäten, geben Sie bitte kurz Bescheid. Wir hinterlegen Ihren Schlüssel gerne im <b>Schlüsselsafe</b> und senden Ihnen am Anreisetag den passenden PIN-Code zu. Bei Verzögerungen vor Ort erreichen Sie das Partnerhotel unter <b>+43 (0)6433 7077</b>.</li>
+          <li><b>Appartement 221:</b> Im <b>Haus Gamskar</b> (42 m², 1 Schlafzimmer, 1 Wohnzimmer mit Ausziehsofa).</li>
+          <li><b>Parkplatz:</b> Stellplatz <b>Nr. 221</b> steht kostenfrei zur Verfügung.</li>
+        </ul>
+      </td>
+      <td class="grid-cell width-50">
+        <h2>Abreise, Kommunikation & Zahlungen</h2>
+        <ul>
+          <li><b>Check-out Zeit:</b> Bis spätestens <b>10:00 Uhr</b> am Abreisetag. Beide Schlüssel bitte wieder bei „die Unterbergerin“ abgeben.</li>
+          <li><b>Miete & Reinigung:</b> Die Bezahlung für Ihre Übernachtung sowie die Endreinigung läuft bequem über <b>Airbnb</b>.</li>
+          <li><b>Vor Ort zu zahlen:</b> Die Kurtaxe (Ortstaxe) sowie optional gebuchte Verpflegung bezahlen Sie bitte am Abreisetag (bzw. Vorabend bis 17:00 Uhr) bei „die Unterbergerin“ (Bar oder EC-Karte).</li>
+          <li><b>Kommunikation mit dem Gastgeber:</b> Bitte nutzen Sie für Nachrichten an uns bevorzugt die <b>Airbnb-App</b> (meine Kontaktdaten finden Sie ebenfalls dort).</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
 
-    function toggleLanguage() {
-      currentLang = currentLang === 'de' ? 'en' : 'de';
-      
-      // Button-Text aktualisieren
-      const btnText = document.getElementById('lang-btn-text');
-      if (btnText) {
-        btnText.innerText = currentLang === 'de' ? 'English' : 'Deutsch';
-      }
+  <div class="highlight-box">
+    <span class="badge">Inklusiv-Highlight</span>
+    <h3 style="margin: 2px 0 1px 0; color: #2e4a38;">Täglich freier Eintritt in die Alpentherme Bad Hofgastein!</h3>
+    <p style="margin: 0; font-size: 8.8pt;">
+      Der Eintritt in die Alpentherme Bad Hofgastein ist für Sie täglich im Mietpreis inkludiert. Bitte holen Sie Ihre Gutscheine/Eintrittskarten dafür an der Rezeption von <b>„die Unterbergerin“</b> ab.
+    </p>
+  </div>
 
-      // Alle Elemente mit data-de und data-en dynamisch übersetzen (kompatibel mit Mobilgeräten)
-      const elements = document.querySelectorAll('[data-de][data-en]');
-      elements.forEach(el => {
-        const targetText = el.getAttribute(`data-${currentLang}`);
-        if (targetText) {
-          el.innerHTML = targetText;
-        }
-      });
-    }
-  </script>
+  <table class="grid-table">
+    <tr>
+      <td class="grid-cell width-100">
+        <h2>Wichtige Haus- & Appartement-Infos</h2>
+        <table class="table-custom">
+          <tr>
+            <td width="28%"><b>Müll & Mülltrennung:</b></td>
+            <td>Abfallcontainer befinden sich straßenseitig neben den Appartementhäusern. Bitte trennen nach: Altpapier/Karton, Plastik/Verpackungen, Biomüll, Altglas und Restmüll.</td>
+          </tr>
+          <tr>
+            <td><b>Skiraum / Sportgeräte:</b></td>
+            <td>Fahrrad- und Sportgeräteraum im Untergeschoss nutzen (Türe links). Bitte <b>keine</b> Sportgeräte im Zimmer aufbewahren!</td>
+          </tr>
+          <tr>
+            <td><b>Waschmaschine:</b></td>
+            <td>Im Keller des Hauses steht eine Waschmaschine zur Verfügung, die bei Bedarf von unseren Gästen genutzt werden kann.</td>
+          </tr>
+          <tr>
+            <td><b>Wäscheständer:</b></td>
+            <td>Steht für Ihre Wäsche im Appartement bereit. Bitte bringen Sie aus optischen Gründen keine Wäsche über dem Balkon an.</td>
+          </tr>
+          <tr>
+            <td><b>Bewegungsmelder:</b></td>
+            <td>Lassen sich bei Bedarf über den Schalter unter dem Bewegungsmelder ausschalten.</td>
+          </tr>
+          <tr>
+            <td><b>Endreinigung Hinweis:</b></td>
+            <td>Bitte Küche sauber hinterlassen, Geschirrspüler vor Abreise einräumen/einschalten und Müll entsorgen.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <div class="footer-note">
+    Adresse: Unterberg 110 (97), A-5632 Dorfgastein • Vor-Ort-Kontakt: Partnerhotel „die Unterbergerin“ (+43 6433 7077) • Gastgeber-Kontakt: Airbnb-App
+  </div>
+
+
+  <!-- SEITE 2 -->
+  <div class="page-break-before"></div>
+
+  <div class="header-banner" style="padding: 10px 18px; margin-bottom: 10px;">
+    <h1>Verpflegung & Kulinarik vor Ort</h1>
+    <p>Kulinarische Angebote im Hotel & Bauernhof „die Unterbergerin“ (Optional buchbar)</p>
+  </div>
+
+  <table class="grid-table">
+    <tr>
+      <td class="grid-cell width-50">
+        <h2>Frühstücks-Angebote</h2>
+        <p style="margin-top: 0; font-size: 8pt; color: #555;">
+          <i>Hinweis: Frühstück und Verpflegung sind optional. Preise und Verfügbarkeiten werden vom Hotel „die Unterbergerin“ festgelegt und können je nach Kapazität abweichen (Angaben ohne Gewähr):</i>
+        </p>
+        
+        <h3>1. Reichhaltiges Frühstücksbuffet</h3>
+        <p style="margin: 2px 0 3px 0; font-size: 7.8pt; color: #666;">Im Frühstücksraum (Haupthaus). Richtpreise bei Vorbestellung / spontan:</p>
+        <table class="table-custom">
+          <tr><th>Kategorie</th><th class="price-col">Vorbest.</th><th class="price-col">Spontan</th></tr>
+          <tr><td>Erwachsene & Jug. (ab 15 J.)</td><td class="price-col">€ 19,00</td><td class="price-col">€ 21,00</td></tr>
+          <tr><td>Kinder (12–14 Jahre)</td><td class="price-col">€ 15,00</td><td class="price-col">€ 16,50</td></tr>
+          <tr><td>Kinder (6–11 Jahre)</td><td class="price-col">€ 12,90</td><td class="price-col">€ 14,00</td></tr>
+          <tr><td>Kinder (0–5 Jahre)</td><td class="price-col" colspan="2"><b>GRATIS</b></td></tr>
+        </table>
+        <p style="font-size: 7.5pt; color: #777; margin-top: 2px;"><i>Sonderpreise für 7 Tage auf Anfrage beim Hotel möglich.</i></p>
+
+        <h3 style="margin-top: 8px;">2. Frühstückskörbchen für Zwei (ca. € 26,00)</h3>
+        <p style="margin: 2px 0 2px 0; font-size: 7.8pt;">Bestellung am Vortag bis 10:30 Uhr. Abholung ab 07:45 Uhr.</p>
+        <p style="font-size: 7.8pt; margin: 0; color: #444;">
+          <i>Inhalt:</i> Bauernschinken, Gasteiner Bergkäse, Landjoghurt, Milch, Müsli, Marmelade, Honig, Butter, Aufstrich, Obst, Kaffeekapseln / Tee / Kakao.
+        </p>
+
+        <h3 style="margin-top: 8px;">3. Brötchenservice & Milch</h3>
+        <p style="margin: 2px 0 2px 0; font-size: 7.8pt;">Bestellung am Vortag bis 17:00 Uhr. Abholung ab 07:45 Uhr / 08:00 Uhr.</p>
+        <table class="table-custom">
+          <tr><td>Semmel (65g)</td><td class="price-col">€ 0,70</td></tr>
+          <tr><td>Kornspitz (70g) / Croissant (70g)</td><td class="price-col">€ 1,60 / € 1,95</td></tr>
+          <tr><td>Frische Milch (0,5 l Flasche)</td><td class="price-col">€ 1,60</td></tr>
+        </table>
+      </td>
+
+      <td class="grid-cell width-50">
+        <h2>Gerichte & Hofladen</h2>
+        
+        <h3>Bauernhofküche zum Erwärmen</h3>
+        <p style="margin: 2px 0 3px 0; font-size: 7.8pt; color: #555;">Fertig gekochte Speisen für Ihr Appartement (Bestellung bis 17:00 Uhr):</p>
+        <table class="table-custom">
+          <tr><td><b>Sugo Bolognese</b> (ca. 400g / 2-3 Port.)</td><td class="price-col">€ 9,60</td></tr>
+          <tr><td><b>Kürbis-Cremesuppe</b> (ca. 600g / 2-3 Port.)</td><td class="price-col">€ 8,50</td></tr>
+          <tr><td><b>Gulasch</b> (ca. 600g / 2-3 Port.)</td><td class="price-col">€ 10,90</td></tr>
+          <tr><td><b>Rinder-Schmorbraten</b> (ca. 500g / 2 Port.)</td><td class="price-col">€ 18,90</td></tr>
+        </table>
+
+        <h3 style="margin-top: 8px;">Waren-Automat & Hofladen</h3>
+        <ul>
+          <li><b>Waren-Automat:</b> Rund um die Uhr vor dem Haupthaus (Eier, Speck, Käse, Kaffeekapseln, Getränke, Waschmittel etc.).</li>
+          <li><b>Hauseigener Hofladen:</b> Selbstgemachte Marmeladen, Säfte, Sirupe und regionale Spezialitäten.</li>
+        </ul>
+
+        <div style="margin-top: 8px; background: #edf2f7; padding: 7px 9px; border-radius: 5px;">
+          <h3 style="margin: 0 0 2px 0; font-size: 8.8pt; color: #2d3748;">Aktivitäten & Umgebung</h3>
+          <p style="margin: 0; font-size: 7.8pt; color: #4a5568;">
+            • <b>Skibushaltestelle:</b> Direkt in nächster Nähe (siehe Orientierungsplan).<br>
+            • <b>Aktivitäten:</b> Kinderspielplatz am Hof, Bauernhoftiere, Wandern, Skifahren Schlossalm/Stubnerkogel/Fulseck.
+          </p>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="footer-note" style="margin-top: 10px;">
+    <b>Bauernhofhotel „die Unterbergerin“ & Appartement 221 (Haus Gamskar)</b> • Unterberg 110 (97), A-5632 Dorfgastein<br>
+    Wir wünschen Ihnen einen wunderschönen, erholsamen Aufenthalt im Gasteinertal!
+  </div>
+
 </body>
 </html>
