@@ -696,13 +696,19 @@
     function toggleLanguage() {
       currentLang = currentLang === 'de' ? 'en' : 'de';
       
-      // Update Button text
-      document.getElementById('lang-btn-text').innerText = currentLang === 'de' ? 'English' : 'Deutsch';
+      // Button-Text aktualisieren
+      const btnText = document.getElementById('lang-btn-text');
+      if (btnText) {
+        btnText.innerText = currentLang === 'de' ? 'English' : 'Deutsch';
+      }
 
-      // Update all elements with data-de and data-en
+      // Alle Elemente mit data-de und data-en dynamisch übersetzen (kompatibel mit Mobilgeräten)
       const elements = document.querySelectorAll('[data-de][data-en]');
       elements.forEach(el => {
-        el.innerText = el.getAttribute(`data-${currentLang}`);
+        const targetText = el.getAttribute(`data-${currentLang}`);
+        if (targetText) {
+          el.innerHTML = targetText;
+        }
       });
     }
   </script>
