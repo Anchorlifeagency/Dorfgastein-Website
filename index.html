@@ -328,11 +328,154 @@
       font-size: 0.9rem;
       transition: all 0.2s ease;
       margin-top: 8px;
+      cursor: pointer;
+      border: none;
     }
 
     .btn-link:hover {
       background-color: var(--primary-dark);
       transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary) !important;
+      border: 1.5px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-light);
+      color: var(--primary-dark) !important;
+    }
+
+    .app-link-inline {
+      color: #a3c2b0;
+      text-decoration: underline;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    
+    .app-link-inline:hover {
+      color: #ffffff;
+    }
+
+    .card-link {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    /* Activity Box Style */
+    .activity-item {
+      background: #f8faf9;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .activity-item h3 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    /* Modal / Pop-up Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      max-width: 650px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .modal-header {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spot-card {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .spot-card:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .spot-card h4 {
+      color: var(--primary-dark);
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .spot-card .time-badge {
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 700;
+      background: var(--primary-light);
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .spot-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     /* Arrival Section */
@@ -457,7 +600,7 @@
       </div>
     </div>
 
-    <!-- WLAN & Quick Contact Card (MIT PARTNERHOTEL KOHÄRENZ) -->
+    <!-- WLAN & Quick Contact Card -->
     <div class="wifi-card">
       <div class="wifi-info">
         <div class="wifi-icon"><i class="fa-solid fa-wifi"></i></div>
@@ -467,7 +610,10 @@
         </div>
       </div>
       <div>
-        <span style="font-size: 0.85rem; color: #a3c2b0; display: block;" data-de="Kontakt vor Ort: Partnerhotel „die Unterbergerin“" data-en="On-site Contact: Partner Hotel 'die Unterbergerin'">Kontakt vor Ort: Partnerhotel „die Unterbergerin“</span>
+        <span style="font-size: 0.85rem; color: #a3c2b0; display: block;" data-de="Kontakt vor Ort: Partnerhotel „die Unterbergerin“" data-en="On-site Contact: Partner Hotel 'die Unterbergerin'">
+          Kontakt vor Ort: Partnerhotel „die Unterbergerin“ 
+          <a href="https://welcome.gastfreund.net/168893" target="_blank" class="app-link-inline" data-de="(Hotel & Regio-Info App 📱)" data-en="(Hotel & Region Info App 📱)">(Hotel & Regio-Info App 📱)</a>
+        </span>
         <strong style="font-size: 1.1rem;"><i class="fa-solid fa-phone"></i> +43 (0)6433 7077</strong>
       </div>
     </div>
@@ -486,7 +632,7 @@
           </li>
           <li>
             <b><span data-de="Schlüssel & Rezeption:" data-en="Keys & Reception:">Schlüssel & Rezeption:</span></b> 
-            <span data-de="Erfolgt über das Partner-Hotel „die Unterbergerin“ direkt nebenan." data-en="Handled via partner hotel 'die Unterbergerin' right next door.">Erfolgt über das Partner-Hotel „die Unterbergerin“ direkt nebenan.</span>
+            <span data-de="Erfolgt über das Partner-Hotel „die Unterbergerin“ direkt nebenan (<a href='https://welcome.gastfreund.net/168893' target='_blank' class='card-link'>Zur Hotel- & Info-App</a>)." data-en="Handled via partner hotel 'die Unterbergerin' right next door (<a href='https://welcome.gastfreund.net/168893' target='_blank' class='card-link'>Open Hotel & Info App</a>).">Erfolgt über das Partner-Hotel „die Unterbergerin“ direkt nebenan (<a href="https://welcome.gastfreund.net/168893" target="_blank" class="card-link">Zur Hotel- & Info-App</a>).</span>
           </li>
           <li>
             <b><span data-de="Spätere Anreise:" data-en="Late Arrival:">Spätere Anreise:</span></b> 
@@ -497,7 +643,7 @@
         </ul>
       </div>
 
-      <!-- Check-Out & Abrechnung Card (MIT AIRBNB-KOMMUNIKATIONSHINWEIS) -->
+      <!-- Check-Out & Abrechnung Card -->
       <div class="card">
         <h2><i class="fa-solid fa-receipt"></i> <span data-de="Abreise & Abrechnung" data-en="Departure & Payment">Abreise & Abrechnung</span></h2>
         <ul>
@@ -537,7 +683,7 @@
       </div>
     </div>
 
-    <!-- Verpflegung & Kulinarik Card (MIT FRÜHSTÜCKS-HINWEIS KLAUSEL) -->
+    <!-- Verpflegung & Kulinarik Card -->
     <div class="card" style="margin-bottom: 24px;">
       <h2><i class="fa-solid fa-utensils"></i> <span data-de="Verpflegung & Kulinarik vor Ort" data-en="Dining & On-Site Culinary Offers">Verpflegung & Kulinarik vor Ort</span></h2>
       <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;" data-de="Optional buchbare Angebote im Partner-Hotel & Bauernhof „die Unterbergerin“ (vor Ort zu zahlen):" data-en="Optional culinary offers at partner hotel & farm 'die Unterbergerin' (payable on site):">
@@ -596,7 +742,7 @@
       </div>
     </div>
 
-    <!-- Hausregeln Card (MIT ERGÄNZTER WASCHMASCHINE) -->
+    <!-- Hausregeln Card -->
     <div class="card" style="margin-bottom: 24px;">
       <h2><i class="fa-solid fa-circle-info"></i> <span data-de="Wichtige Haus- & Appartement-Infos" data-en="Important House Information">Wichtige Haus- & Appartement-Infos</span></h2>
       <table class="menu-table">
@@ -627,17 +773,54 @@
 
     <!-- Aktivitäten & Digitaler Gastfreund App Link -->
     <div class="card" style="margin-bottom: 24px;">
-      <h2><i class="fa-solid fa-compass"></i> <span data-de="Aktivitäten & Digitaler Reiseführer" data-en="Activities & Digital Guide">Aktivitäten & Digitaler Reiseführer</span></h2>
-      <p data-de="Entdecken Sie Ausflugstipps, Wanderrouten, Skigebiete (Fulseck, Schlossalm, Stubnerkogel) und aktuelle Events im Gasteinertal direkt in unserer digitalen Gäste-App:" data-en="Discover excursion tips, hiking routes, ski areas, and current events in Gastein Valley via our digital guest guide:">
-        Entdecken Sie Ausflugstipps, Wanderrouten, Skigebiete (Fulseck, Schlossalm, Stubnerkogel) und aktuelle Events im Gasteinertal direkt in unserer digitalen Gäste-App:
-      </p>
-      <a href="https://welcome.gastfreund.net/168893" target="_blank" class="btn-link">
-        <i class="fa-solid fa-mobile-screen-button"></i>
-        <span data-de="Zur Gastfreund App öffnen" data-en="Open Gastfreund Guest App">Zur Gastfreund App öffnen</span>
-      </a>
-      <p style="margin-top: 12px; font-size: 0.9rem; font-style: italic; color: var(--primary-dark);">
-        <i class="fa-solid fa-lightbulb"></i> <span data-de="Tipp: Reservieren Sie beliebte Aktivitäten am besten vorab, so sichern Sie sich Ihre Wunschtermine!" data-en="Tip: We recommend booking popular activities in advance to secure your preferred dates!">Tipp: Reservieren Sie beliebte Aktivitäten am besten vorab, so sichern Sie sich Ihre Wunschtermine!</span>
-      </p>
+      <h2><i class="fa-solid fa-compass"></i> <span data-de="Aktivitäten, Sport & Region" data-en="Activities, Sports & Region">Aktivitäten, Sport & Region</span></h2>
+      
+      <!-- 1. SKIFAHREN -->
+      <div class="activity-item">
+        <h3><i class="fa-solid fa-person-skiing"></i> <span data-de="Skifahren & Winter" data-en="Skiing & Winter">Skifahren & Winter</span></h3>
+        <p data-de="In einem Radius von etwa 30 Fahr-Minuten um Dorfgastein befinden sich 5 bis 6 große Skigebiete (bzw. Skischaukeln), die zusammen über 600 Pistenkilometer abdecken." data-en="Within a driving radius of approx. 30 minutes from Dorfgastein, you will find 5 to 6 major ski areas covering over 600 kilometers of slopes.">
+          In einem Radius von etwa 30 Fahr-Minuten um Dorfgastein befinden sich 5 bis 6 große Skigebiete (bzw. Skischaukeln), die zusammen über 600 Pistenkilometer abdecken.
+        </p>
+        <button class="btn-link btn-outline" onclick="openModal('skiModal')">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <span data-de="Alle Skigebiete im Detail ansehen" data-en="View All Ski Areas in Detail">Alle Skigebiete im Detail ansehen</span>
+        </button>
+      </div>
+
+      <!-- 2. WANDERN & BIKEN -->
+      <div class="activity-item">
+        <h3><i class="fa-solid fa-person-hiking"></i> <span data-de="Wandern & Biken" data-en="Hiking & Biking">Wandern & Biken</span></h3>
+        <p data-de="Das Gasteinertal bietet über 600 km markierte Wanderwege, idyllische Almen und hervorragende E-Bike-Routen direkt ab der Haustür im Unterberg." data-en="The Gastein Valley offers over 600 km of marked hiking trails, idyllic alpine huts, and excellent e-bike routes starting right at your doorstep in Unterberg.">
+          Das Gasteinertal bietet über 600 km markierte Wanderwege, idyllische Almen und hervorragende E-Bike-Routen direkt ab der Haustür im Unterberg.
+        </p>
+        <button class="btn-link btn-outline" onclick="openModal('hikeModal')">
+          <i class="fa-solid fa-route"></i>
+          <span data-de="Wander- & Bike-Highlights ansehen" data-en="View Hiking & Biking Highlights">Wander- & Bike-Highlights ansehen</span>
+        </button>
+      </div>
+
+      <!-- 3. ABENTEUER & AUSFLÜGE -->
+      <div class="activity-item">
+        <h3><i class="fa-solid fa-person-through-window"></i> <span data-de="Abenteuer & Familien-Ausflüge" data-en="Adventure & Excursions">Abenteuer & Familien-Ausflüge</span></h3>
+        <p data-de="Von Spektakulärem wie der Hängebrücke am Stubnerkogel über die Flying Waters bis hin zu Klammen und Burgwelten – voller Abwechslung für Groß und Klein." data-en="From spectacular highlights like the Stubnerkogel suspension bridge and Flying Waters to gorges and historic castles – full of variety for all ages.">
+          Von Spektakulärem wie der Hängebrücke am Stubnerkogel über die Flying Waters bis hin zu Klammen und Burgwelten – voller Abwechslung für Groß und Klein.
+        </p>
+        <button class="btn-link btn-outline" onclick="openModal('adventureModal')">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span data-de="Abenteuer & Ausflugsziele ansehen" data-en="View Adventure & Excursions">Abenteuer & Ausflugsziele ansehen</span>
+        </button>
+      </div>
+
+      <!-- Gastfreund App Button -->
+      <div style="margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
+        <p data-de="Entdecken Sie Ausflugstipps, Wanderrouten, Skigebiete und aktuelle Events im Gasteinertal direkt in der digitalen Gäste-App unseres Partner-Hotels „die Unterbergerin“:" data-en="Discover excursion tips, hiking routes, ski areas, and current events in Gastein Valley via our partner hotel 'die Unterbergerin' digital guest guide:">
+          Entdecken Sie Ausflugstipps, Wanderrouten, Skigebiete und aktuelle Events im Gasteinertal direkt in der digitalen Gäste-App unseres Partner-Hotels „die Unterbergerin“:
+        </p>
+        <a href="https://welcome.gastfreund.net/168893" target="_blank" class="btn-link">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span data-de="Zur Gastfreund App öffnen" data-en="Open Gastfreund Guest App">Zur Gastfreund App öffnen</span>
+        </a>
+      </div>
     </div>
 
     <!-- Anfahrtsbeschreibung Section -->
@@ -701,7 +884,154 @@
 
   </div>
 
-  <!-- JavaScript for Language Toggle -->
+  <!-- POP-UP MODALS FOR ACTIVITIES -->
+
+  <!-- Modal 1: Skigebiete -->
+  <div id="skiModal" class="modal" onclick="closeModalOnOuterClick(event, 'skiModal')">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('skiModal')">&times;</span>
+      <div class="modal-header">
+        <i class="fa-solid fa-person-skiing"></i>
+        <span data-de="Skigebiete im Umkreis (~30 Min.)" data-en="Ski Areas nearby (~30 min)">Skigebiete im Umkreis (~30 Min.)</span>
+      </div>
+
+      <div class="spot-card">
+        <h4>Skischaukel Dorfgastein-Großarltal</h4>
+        <span class="time-badge">0–5 Min. Fahrzeit</span>
+        <p data-de="Direkter Einstieg über die Gipfelbahn Fulseck. Perfekt für Familien und Carving-Liebhaber mit toller Skischaukel hinüber ins Großarltal." data-en="Direct access via Fulseck gondola. Perfect for families and carving enthusiasts with great slopes connecting to Grossarl Valley.">
+          Direkter Einstieg über die Gipfelbahn Fulseck. Perfekt für Familien und Carving-Liebhaber mit toller Skischaukel hinüber ins Großarltal.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Skischaukel Schlossalm-Angertal-Stubnerkogel</h4>
+        <span class="time-badge">12–18 Min. Fahrzeit</span>
+        <p data-de="12 Min. nach Bad Hofgastein (Schlossalmbahn) bzw. 18 Min. nach Bad Gastein (Stubnerkogel). Das größte zusammenhängende Skigebiet des Tals mit modernen Bahnen, Hängebrücke und langen Talabfahrten." data-en="12 min to Bad Hofgastein / 18 min to Bad Gastein. The largest connected ski area in the valley with modern lifts, suspension bridge, and long valley runs.">
+          12 Min. nach Bad Hofgastein (Schlossalmbahn) bzw. 18 Min. nach Bad Gastein (Stubnerkogel). Das größte zusammenhängende Skigebiet des Tals mit modernen Bahnen, Hängebrücke und langen Talabfahrten.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Snow Space Salzburg - St. Johann / Alpendorf</h4>
+        <span class="time-badge">20–25 Min. Fahrzeit</span>
+        <p data-de="Einstieg in Alpendorf (St. Johann im Pongau). Verbindet St. Johann, Wagrain und Flachau zu einem riesigen Skigebiet mitten in Ski amadé." data-en="Entry in Alpendorf (St. Johann). Connects St. Johann, Wagrain, and Flachau into a massive ski resort at the heart of Ski amadé.">
+          Einstieg in Alpendorf (St. Johann im Pongau). Verbindet St. Johann, Wagrain und Flachau zu einem riesigen Skigebiet mitten in Ski amadé.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Graukogel (Bad Gastein)</h4>
+        <span class="time-badge">25 Min. Fahrzeit</span>
+        <p data-de="Der Naturschnee-Geheimtipp mit anspruchsvollen Waldfahrten und echten Weltcup-Pisten für erfahrene Skifahrer." data-en="The natural snow insider tip featuring challenging forest slopes and genuine World Cup runs for advanced skiers.">
+          Der Naturschnee-Geheimtipp mit anspruchsvollen Waldfahrten und echten Weltcup-Pisten für erfahrene Skifahrer.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Sportgastein</h4>
+        <span class="time-badge">30 Min. Fahrzeit</span>
+        <p data-de="Das höchstgelegene Skigebiet im Ski amadé (bis 2.686 m). Absolut schneesicher und ein echtes Mekka für Freerider und Tiefschnee-Fans." data-en="Highest ski resort in Ski amadé (up to 2,686 m). High snow guarantee and a true mecca for freeriders and powder fans.">
+          Das höchstgelegene Skigebiet im Ski amadé (bis 2.686 m). Absolut schneesicher und ein echtes Mekka für Freerider und Tiefschnee-Fans.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Hochkönig Skiregion (Mühlbach)</h4>
+        <span class="time-badge">30–35 Min. Fahrzeit</span>
+        <p data-de="Einstieg in die berühmte Königstour über Mühlbach, Dienten und Maria Alm mit herrlichem Panorama entlang der Hochkönig-Nordwand." data-en="Access to the famous Königstour across Mühlbach, Dienten, and Maria Alm with breathtaking views of the Hochkönig massif.">
+          Einstieg in die berühmte Königstour über Mühlbach, Dienten und Maria Alm mit herrlichem Panorama entlang der Hochkönig-Nordwand.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Wandern & Biken -->
+  <div id="hikeModal" class="modal" onclick="closeModalOnOuterClick(event, 'hikeModal')">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('hikeModal')">&times;</span>
+      <div class="modal-header">
+        <i class="fa-solid fa-person-hiking"></i>
+        <span data-de="Wandern & Biken im Gasteinertal" data-en="Hiking & Biking in Gastein Valley">Wandern & Biken im Gasteinertal</span>
+      </div>
+
+      <div class="spot-card">
+        <h4>Fulseck & Spiegelsee (Dorfgastein)</h4>
+        <span class="time-badge">Direkt vor Ort</span>
+        <p data-de="Bequem mit der Fulseck-Gipfelbahn erreichbar. Wunderschöner Barfußweg rund um den Spiegelsee sowie aussichtsreiche Gratwanderungen." data-en="Easily accessible via Fulseck gondola. Beautiful barefoot path around Lake Spiegelsee and scenic ridge hiking trails.">
+          Bequem mit der Fulseck-Gipfelbahn erreichbar. Wunderschöner Barfußweg rund um den Spiegelsee sowie aussichtsreiche Gratwanderungen.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Gasteiner Bärenweg & Steineralm</h4>
+        <span class="time-badge">Start ab Unterberg</span>
+        <p data-de="Familienfreundlicher Erlebniswanderweg mit gemütlicher Einkehr auf der Steineralm. Perfekt für einen entspannten Halbtagesausflug." data-en="Family-friendly themed trail with a cozy stop at Steineralm hut. Perfect for a relaxing half-day hike.">
+          Familienfreundlicher Erlebniswanderweg mit gemütlicher Einkehr auf der Steineralm. Perfekt für einen entspannten Halbtagesausflug.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Gasteiner Höhe & Gasteiner Radweg</h4>
+        <span class="time-badge">Direkt ab Haus</span>
+        <p data-de="Der durchgehende Gasteiner Radweg führt kinderfreundlich durch das gesamte Tal. E-Bike Verleih direkt in Dorfgastein verfügbar." data-en="The continuous Gastein cycle path runs smoothly through the entire valley. E-bike rentals available right in Dorfgastein.">
+          Der durchgehende Gasteiner Radweg führt kinderfreundlich durch das gesamte Tal. E-Bike Verleih direkt in Dorfgastein verfügbar.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Gasteiner Almenweg & Nassfeld (Sportgastein)</h4>
+        <span class="time-badge">20–30 Min. Anfahrt</span>
+        <p data-de="Über 55 bewirtschaftete Almen im Tal! Der flache Talboden in Sportgastein bietet zudem imposantes Hochgebirgspanorama für Wanderer jeden Alters." data-en="Over 55 alpine huts in the valley! The flat valley floor in Sportgastein offers stunning high-alpine mountain views for all ages.">
+          Über 55 bewirtschaftete Almen im Tal! Der flache Talboden in Sportgastein bietet zudem imposantes Hochgebirgspanorama für Wanderer jeden Alters.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Abenteuer & Ausflüge -->
+  <div id="adventureModal" class="modal" onclick="closeModalOnOuterClick(event, 'adventureModal')">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('adventureModal')">&times;</span>
+      <div class="modal-header">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span data-de="Abenteuer & Familien-Ausflugsziele" data-en="Adventure & Family Destinations">Abenteuer & Familien-Ausflugsziele</span>
+      </div>
+
+      <div class="spot-card">
+        <h4>Hängebrücke & Glocknerblick (Stubnerkogel)</h4>
+        <span class="time-badge">18 Min. nach Bad Gastein</span>
+        <p data-de="Spektakuläre 140 m lange Hängebrücke auf 2.300 m Höhe direkt an der Bergstation sowie die Aussichtsplattform Glocknerblick." data-en="Spectacular 140 m long suspension bridge at 2,300 m altitude directly at the mountain station plus Glocknerblick viewing platform.">
+          Spektakuläre 140 m lange Hängebrücke auf 2.300 m Höhe direkt an der Bergstation sowie die Aussichtsplattform Glocknerblick.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Flying Waters & Gasteiner Wasserfall</h4>
+        <span class="time-badge">20 Min. nach Bad Gastein</span>
+        <p data-de="An Rollen schwebend über die weltberühmte Gasteiner Schlucht und den Wasserfall gleiten – ein unvergesslicher Adrenalinkick!" data-en="Zip-line gliding suspended over the world-famous Gastein gorge and waterfall – an unforgettable thrill!">
+          An Rollen schwebend über die weltberühmte Gasteiner Schlucht und den Wasserfall gleiten – ein unvergesslicher Adrenalinkick!
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Liechtensteinklamm (St. Johann)</h4>
+        <span class="time-badge">20 Min. Fahrzeit</span>
+        <p data-de="Eine der tiefsten und spektakulärsten Schluchten der Alpen mit der imposanten Wendeltreppe 'Helix'." data-en="One of the deepest and most impressive gorges in the Alps featuring the striking 'Helix' spiral staircase.">
+          Eine der tiefsten und spektakulärsten Schluchten der Alpen mit der imposanten Wendeltreppe 'Helix'.
+        </p>
+      </div>
+
+      <div class="spot-card">
+        <h4>Erlebnisburg Hohenwerfen</h4>
+        <span class="time-badge">30 Min. Fahrzeit</span>
+        <p data-de="Mittelalterliche Höhenburg mit spektakulären Greifvogel-Flugvorführungen, Burgführung und Rittermuseum." data-en="Medieval hilltop castle featuring spectacular birds of prey flight shows, guided tours, and knight museum.">
+          Mittelalterliche Höhenburg mit spektakulären Greifvogel-Flugvorführungen, Burgführung und Rittermuseum.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Language Toggle & Modals -->
   <script>
     let currentLang = 'de';
 
@@ -714,7 +1044,7 @@
         btnText.innerText = currentLang === 'de' ? 'English' : 'Deutsch';
       }
 
-      // Alle Elemente mit data-de und data-en dynamisch übersetzen (kompatibel mit Mobilgeräten)
+      // Alle Elemente mit data-de und data-en dynamisch übersetzen
       const elements = document.querySelectorAll('[data-de][data-en]');
       elements.forEach(el => {
         const targetText = el.getAttribute(`data-${currentLang}`);
@@ -722,6 +1052,23 @@
           el.innerHTML = targetText;
         }
       });
+    }
+
+    // Modal Functions
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOnOuterClick(event, modalId) {
+      if (event.target.id === modalId) {
+        closeModal(modalId);
+      }
     }
   </script>
 </body>
